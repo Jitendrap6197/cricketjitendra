@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Scoreboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    .scoreboard {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .scoreboard th, .scoreboard td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    .scoreboard th {
+      background-color: #f2f2f2;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input[type="text"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Cricket Scoreboard</h1>
+  <div>
+    <label for="tossResult">Toss Result: </label>
+    <input type="text" id="tossResult">
+  </div>
+  <br>
+  <div>
+    <label for="team1Name">Team 1 Name: </label>
+    <input type="text" id="team1Name">
+    <label for="team1Batter">Batter: </label>
+    <input type="text" id="team1Batter">
+    <label for="team1Bowler">Bowler: </label>
+    <input type="text" id="team1Bowler">
+  </div>
+  <br>
+  <div>
+    <label for="team2Name">Team 2 Name: </label>
+    <input type="text" id="team2Name">
+    <label for="team2Batter">Batter: </label>
+    <input type="text" id="team2Batter">
+    <label for="team2Bowler">Bowler: </label>
+    <input type="text" id="team2Bowler">
+  </div>
+  <br>
+  <table class="scoreboard">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Runs</th>
+        <th>Wickets</th>
+        <th>Overs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="team1">
+        <td id="team1Label" style="color: #007bff;">Team 1</td>
+        <td id="team1Runs">0</td>
+        <td id="team1Wickets">0</td>
+        <td id="team1Overs">0</td>
+      </tr>
+      <tr id="team2">
+        <td id="team2Label" style="color: #dc3545;">Team 2</td>
+        <td id="team2Runs">0</td>
+        <td id="team2Wickets">0</td>
+        <td id="team2Overs">0</td>
+      </tr>
+    </tbody>
+  </table>
+  <button onclick="addRun('team1')">Team 1 Scored Run</button>
+  <button onclick="addWicket('team1')">Team 1 Lost Wicket</button>
+  <button onclick="addOver('team1')">Team 1 Completed Over</button>
+  <br><br>
+  <button onclick="addRun('team2')">Team 2 Scored Run</button>
+  <button onclick="addWicket('team2')">Team 2 Lost Wicket</button>
+  <button onclick="addOver('team2')">Team 2 Completed Over</button>
+  <br><br>
+  <div class="result" id="matchResult"></div>
+</div>
+
+<script>
+  let team1Runs = 0;
+  let team1Wickets = 0;
+  let team1Overs = 0;
+
+  let team2Runs = 0;
+  let team2Wickets = 0;
+  let team2Overs = 0;
+
+  function addRun(team) {
+    if (team === 'team1') {
+      team1Runs++;
+      document.getElementById('team1Runs').innerText = team1Runs;
+    } else {
+      team2Runs++;
+      document.getElementById('team2Runs').innerText = team2Runs;
+    }
+    checkResult();
+  }
+
+  function addWicket(team) {
+    if (team === 'team1') {
+      team1Wickets++;
+      document.getElementById('team1Wickets').innerText = team1Wickets;
+    } else {
+      team2Wickets++;
+      document.getElementById('team2Wickets').innerText = team2Wickets;
+    }
+    checkResult();
+  }
+
+  function addOver(team) {
+    if (team === 'team1') {
+      team1Overs++;
+      document.getElementById('team1Overs').innerText = team1Overs;
+    } else {
+      team2Overs++;
+      document.getElementById('team2Overs').innerText = team2Overs;
+    }
+    checkResult();
+  }
+
+  function checkResult() {
+    if (team1Runs > team2Runs) {
+      document.getElementById('matchResult').innerHTML = Match Result: <span style="color: #007bff;">${document.getElementById('team1Name').value}</span> won by ${team1Runs - team2Runs} runs;
+    } else if (team1Runs < team2Runs) {
+      document.getElementById('matchResult').innerHTML = Match Result: <span style="color: #dc3545;">${document.getElementById('team2Name').value}</span> won by ${team2Runs - team1Runs} runs;
+    } else {
+      document.getElementById('matchResult').innerText = "Match Drawn";
+    }
+  }
+</script>
+
+</body>
+</html>
