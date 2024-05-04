@@ -162,9 +162,9 @@
 
   function checkResult() {
     if (team1Runs > team2Runs) {
-      document.getElementById('matchResult').innerHTML = Match Result: <span style="color: #007bff;">${document.getElementById('team1Name').value}</span> won by ${team1Runs - team2Runs} runs;
+      document.getElementById('matchResult').innerHTML = `Match Result: <span style="color: #007bff;">${document.getElementById('team1Name').value}</span> won by ${team1Runs - team2Runs} runs`;
     } else if (team1Runs < team2Runs) {
-      document.getElementById('matchResult').innerHTML = Match Result: <span style="color: #dc3545;">${document.getElementById('team2Name').value}</span> won by ${team2Runs - team1Runs} runs;
+      document.getElementById('matchResult').innerHTML = `Match Result: <span style="color: #dc3545;">${document.getElementById('team2Name').value}</span> won by ${team2Runs - team1Runs} runs`;
     } else {
       document.getElementById('matchResult').innerText = "Match Drawn";
     }
